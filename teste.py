@@ -1,11 +1,11 @@
 dias_trabalhados = float(input("Quantidade de dias trabalhados no mês: "))
+funcionarios = int(input("Digite a quantidade de funcionários: "))
 salario = float(input("digite o salário base: R$ "))
 periculosidade = (salario/100*30)
 vale_transporte = float(input("Digite o valor do Transporte da cidade: R$ "))
 refeição = float(input("Digite o valor unitário do Vale refeição: R$ "))
 cesta_basica = float(input("Digite o valor da cesta básica: R$ "))
-auxilio_funeral = ((((((salario*1.5)/100*0.20)/12)/100)*-0.925)+((((salario*1.5)/100*0.20)/12)))
-seguro_vida = float(input("Digite o valor do Seguro de vida: R$ "))
+seguro_vida = float(input("Digite o valor do seguro de vida: R$ "))
 beneficio_social_familiar = float(input("Digite o valor do Beneficio Social Familiar: R$ "))
 norma_regulamentadora = float(input("Digite o valor da Norma Rergulamentadora nº07: R$ "))
 uniforme = float(input("Digite o valor do Uniforme: R$ "))
@@ -45,20 +45,20 @@ print("O Valor da COFINS: ", cofins,"%")"""
 
 print("--*" * 20)
 #COMPOSIÇÃO SALARIAL
-composicao_salarial = (salario + periculosidade)
+composicao_salarial = ((salario + periculosidade)*funcionarios)
 print("Valor Total da Remuneração: R$",composicao_salarial)
 
 #BENEFICIO DE VALE TRANSPORTE
 print("--*" * 20)
-transporte = (vale_transporte * (dias_trabalhados*2))
-parcela_trab_vt = (salario/100*6)
+transporte = ((vale_transporte * (dias_trabalhados*2))*funcionarios)
+parcela_trab_vt = ((salario/100*6)*funcionarios)
 transporte_total = (transporte - parcela_trab_vt)
 transporte_total = round(transporte_total,2)
 print("Valor Total do Vale Transporte: R$",transporte_total)
 
 #BENEFICIO DE VALE REFEIÇÃO
 print("--*" * 20)
-vale_refeicao = (refeição * dias_trabalhados)
+vale_refeicao = ((refeição * dias_trabalhados)*funcionarios)
 parcela_trab_vr = (vale_refeicao/100*18)
 refeicao_total = (vale_refeicao-parcela_trab_vr)
 refeicao_total = round(refeicao_total, 2)
@@ -66,35 +66,35 @@ print("Valor Total do Vale Refeição: R$",refeicao_total)
 
 #BENEFICIO DE CESTA BÁSICA
 print("--*" * 20)
-cesta_basica_1 = (cesta_basica)
-parcela_trab_cesta = (cesta_basica/100*5)
+cesta_basica_1 = ((cesta_basica)*funcionarios)
+parcela_trab_cesta = ((cesta_basica/100*5)*funcionarios)
 valor_total_cesta = (cesta_basica_1 - parcela_trab_cesta)
 valor_total_cesta = round(valor_total_cesta,2)
 print("Valor Total da Cesta Básica: R$",valor_total_cesta)
 
 #AUXILIO FUNERAL
 print("--*" * 20)
-auxilio_funeral_1 = auxilio_funeral
-auxilio_funeral_1 = round(auxilio_funeral_1,2)
-print("Valor Total do Auxilio Funeral: R$",auxilio_funeral_1)
+auxilio_funeral = ((((((salario*1.5)*(20/100))/12)*-9.25/100)+(((salario*1.5)*(20/100))/12))/100)*funcionarios
+auxilio_funeral = round(auxilio_funeral,2)
+print("Valor Total do Auxilio Funeral: R$",auxilio_funeral)
 
 #SEGURO DE VIDA
 print("--*" * 20)
-seguro_vida_1 = seguro_vida
+seguro_vida_1 =( seguro_vida*funcionarios)
 seguro_vida_1 = round(seguro_vida_1,2)
 print("Valor Total do Seguro de Vida: R$",seguro_vida_1)
 
 #BENEFICIO SOCIAL FAMILIAR
 print("--*" * 20)
-beneficio_social_familiar_1 = beneficio_social_familiar
-parcela_trab_bsf = (salario/100*7)
+beneficio_social_familiar_1 = (beneficio_social_familiar*funcionarios)
+parcela_trab_bsf = ((salario/100*7)*funcionarios)
 total_bsf = (beneficio_social_familiar_1-parcela_trab_bsf)
 total_bsf = round(total_bsf,2)
 print("Valor Total do Beneficio Social Familiar: R$",total_bsf)
 
 #NORMA REGULAMENTADORA Nº7
 print("--*" * 20)
-norma_regulamentadora_1 = norma_regulamentadora
+norma_regulamentadora_1 = (norma_regulamentadora*funcionarios)
 norma_regulamentadora_1 = round(norma_regulamentadora_1,2)
 print("Valor Total da Norma Regulamentadora nº7: R$",norma_regulamentadora_1)
 
@@ -103,7 +103,7 @@ UNIFORME
 EQUIPAMENTOS
 RECICLAGEM"""
 print("--*" * 20)
-insumos_diversos = (uniforme + equipamentos + reciclagem)
+insumos_diversos = ((uniforme + equipamentos + reciclagem)*funcionarios)
 insumos_diversos = round(insumos_diversos,2)
 print("Valor Total dos Insumos: R$",insumos_diversos)
 
@@ -115,13 +115,13 @@ print("Valor Total dos Encargos Sociais: R$",encargos_sociais_trabalhistas)
 
 #INTRAJORNADA
 print("--*" * 20)
-intrajornada = ((composicao_salarial + transporte_total + refeicao_total + valor_total_cesta + auxilio_funeral_1 + seguro_vida_1 + total_bsf + norma_regulamentadora_1 + insumos_diversos + encargos_sociais_trabalhistas)/365.28)*30.44
+intrajornada = ((composicao_salarial + transporte_total + refeicao_total + valor_total_cesta + auxilio_funeral + seguro_vida_1 + total_bsf + norma_regulamentadora_1 + insumos_diversos + encargos_sociais_trabalhistas)/365.28)*30.44
 intrajornada = round(intrajornada,2)
 print("Valor Total da Intrajornada: R$",intrajornada)
 
 #SUBTOTAL
 print("--*" * 20)
-subtotal = (composicao_salarial + transporte_total + refeicao_total + valor_total_cesta + auxilio_funeral_1 + seguro_vida_1 + total_bsf + norma_regulamentadora_1 + insumos_diversos + encargos_sociais_trabalhistas + intrajornada)
+subtotal = (composicao_salarial + transporte_total + refeicao_total + valor_total_cesta + auxilio_funeral + seguro_vida_1 + total_bsf + norma_regulamentadora_1 + insumos_diversos + encargos_sociais_trabalhistas + intrajornada)
 subtotal = round(subtotal,2)
 print("Valor SUBTOTAL: R$",subtotal)
 
